@@ -21,42 +21,24 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QrGenerator extends AppCompatActivity {
-    EditText edit_input;
-    Button btn_generate;
-    ImageView img_qr;
+    ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_qr_generator);
-        edit_input = findViewById(R.id.edit_input);
-        btn_generate = findViewById(R.id.btn_generate);
-        img_qr = findViewById(R.id.img_qr);
 
-        btn_generate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                generateQR();
-            }
+        imageView = findViewById(R.id.img_qr2);
+        Bitmap bitmap = (Bitmap) getIntent().getParcelableExtra("qr_image");
+        imageView.setImageBitmap(bitmap);
+    }
 
-            private void generateQR() {
-                String text = edit_input.getText().toString().trim();
-                if (text.isEmpty()) {
-                    Toast.makeText(QrGenerator.this, "Please enter amount", Toast.LENGTH_SHORT).show();
-                }else {
-                    MultiFormatWriter writer = new MultiFormatWriter();
-                    try {
-                        BitMatrix matrix = writer.encode(text, BarcodeFormat.QR_CODE, 800,800);
-                        BarcodeEncoder encoder = new BarcodeEncoder();
-                        Bitmap bitmap = encoder.createBitmap(matrix);
-                        img_qr.setImageBitmap(bitmap);
+    public void back(View view) {
+        finish();
+    }
 
-                    } catch (WriterException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        });
+    public void share(View view) {
 
     }
 }

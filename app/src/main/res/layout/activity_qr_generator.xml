@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,40 +9,18 @@
     android:gravity="center_horizontal"
     tools:context=".QrGenerator">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_input"
-        android:padding="15dp"
-        android:layout_marginTop="70dp"
-        android:inputType="number"
-        android:hint="Enter amount (Kshs)"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_generate"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/comfortaabold"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="10dp"
-        android:text="Generate QR Code"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:cornerRadius="10dp">
-
-
-    </com.google.android.material.button.MaterialButton>
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/img_qr"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/img_qr2"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:elevation="5dp"
+        tools:ignore="ContentDescription,HardcodedText" />
 
-</LinearLayout>
+
+
+</RelativeLayout>

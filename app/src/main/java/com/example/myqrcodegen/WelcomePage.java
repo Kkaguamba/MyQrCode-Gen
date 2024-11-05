@@ -1,6 +1,8 @@
 package com.example.myqrcodegen;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +13,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myqrcodegen.utility.NetworkChangeListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class WelcomePage extends AppCompatActivity {
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     Button btn_login,btn_signup;
     private FirebaseAuth mAuth;
 
@@ -48,5 +52,16 @@ public class WelcomePage extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, filter);
+        super.onStart();
+    }
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 }
